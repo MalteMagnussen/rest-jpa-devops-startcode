@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,16 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-
 @Entity
 @NamedQueries({
-    @NamedQuery(name="Movie.findAll", query="SELECT r FROM Movie r"),
-    @NamedQuery(name="Movie.deleteAllRows", query = "DELETE from Movie"),
-    @NamedQuery(name="Movie.getById", query="SELECT r FROM Movie r WHERE r.id = :id"),
-    @NamedQuery(name="Movie.getByName", query="SELECT r FROM Movie r WHERE r.name = :name")
+    @NamedQuery(name = "Movie.findAll", query = "SELECT r FROM Movie r"),
+    @NamedQuery(name = "Movie.deleteAllRows", query = "DELETE from Movie"),
+    @NamedQuery(name = "Movie.getById", query = "SELECT r FROM Movie r WHERE r.id = :id"),
+    @NamedQuery(name = "Movie.getByName", query = "SELECT r FROM Movie r WHERE r.name = :name")
 })
 public class Movie implements Serializable {
-    
+
     // DEFAULT EMPTY CONSTRUCTOR 
     public Movie() {
     }
@@ -41,6 +41,47 @@ public class Movie implements Serializable {
         this.ticketsSold = ticketsSold;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 59 * hash + Objects.hashCode(this.name);
+        hash = 59 * hash + Objects.hashCode(this.releaseDate);
+        hash = 59 * hash + this.rating;
+        hash = 59 * hash + (this.showing ? 1 : 0);
+        hash = 59 * hash + (int) (this.ticketsSold ^ (this.ticketsSold >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Movie other = (Movie) obj;
+        if (this.rating != other.rating) {
+            return false;
+        }
+        if (this.showing != other.showing) {
+            return false;
+        }
+        if (this.ticketsSold != other.ticketsSold) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.releaseDate, other.releaseDate)) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Get the value of ticketsSold
      *
@@ -58,7 +99,6 @@ public class Movie implements Serializable {
     public void setTicketsSold(long ticketsSold) {
         this.ticketsSold = ticketsSold;
     }
-
 
     /**
      * Get the value of showing
@@ -78,7 +118,6 @@ public class Movie implements Serializable {
         this.showing = showing;
     }
 
-
     /**
      * Get the value of rating
      *
@@ -96,7 +135,6 @@ public class Movie implements Serializable {
     public void setRating(int rating) {
         this.rating = rating;
     }
-
 
     /**
      * Get the value of releaseDate
@@ -116,8 +154,6 @@ public class Movie implements Serializable {
         this.releaseDate = releaseDate;
     }
 
-
-
     /**
      * Get the value of name
      *
@@ -136,9 +172,6 @@ public class Movie implements Serializable {
         this.name = name;
     }
 
-    
-    
-        
     public Long getId() {
         return id;
     }
@@ -146,6 +179,5 @@ public class Movie implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
- 
+
 }

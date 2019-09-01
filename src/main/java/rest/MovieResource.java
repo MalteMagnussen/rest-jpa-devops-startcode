@@ -25,11 +25,18 @@ public class MovieResource {
      * @param id of the Movie.
      * @return Number of Tickets Sold.
      */
-    @Path("tickets/{id}")
+    @Path("/tickets/{id}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String getTicketSales(@PathParam("id") int id) {
         return new Gson().toJson(FACADE.getTicketSales(id));
     }
 
+    @Path("/all")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getAllMovies() {
+        return new Gson().toJson(FACADE.getAllMovies());
+    }
+    
 }

@@ -1,6 +1,9 @@
 package facades;
 
+import dto.MovieDTO;
 import entities.Movie;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -44,6 +47,17 @@ public class MovieFacade {
         EntityManager em = getEntityManager();
         Movie movie = (Movie) em.createNamedQuery("Movie.getById").setParameter("id", id).getSingleResult();
         return movie.getTicketsSold();
+    }
+
+    public List<MovieDTO> getAllMovies() {
+        EntityManager em = getEntityManager();
+        List<Movie> movies = new ArrayList<>();
+        movies = em.createNamedQuery("Movie.findAll").getResultList();
+        List<MovieDTO> result = new ArrayList<>();
+        for (Movie movie: movies) {
+            result.add(new MovieDTO(movie));
+        }
+        return result;
     }
     
     

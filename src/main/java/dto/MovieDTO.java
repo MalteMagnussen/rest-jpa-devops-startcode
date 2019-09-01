@@ -7,12 +7,14 @@ package dto;
 
 import entities.Movie;
 import java.sql.Date;
+import java.util.Objects;
 
 /**
  *
  * @author Malte
  */
 public class MovieDTO {
+
     // FIELDS
     private Long id; // ID of the movie. 
     private String name; // Name of the movie.
@@ -26,10 +28,45 @@ public class MovieDTO {
         this.releaseDate = movie.getReleaseDate();
         this.viewerRating = movie.getRating();
         this.available = movie.isShowing();
-                
+
     }
-    
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + Objects.hashCode(this.name);
+        hash = 31 * hash + Objects.hashCode(this.releaseDate);
+        hash = 31 * hash + this.viewerRating;
+        hash = 31 * hash + (this.available ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MovieDTO other = (MovieDTO) obj;
+        if (this.viewerRating != other.viewerRating) {
+            return false;
+        }
+        if (this.available != other.available) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.releaseDate, other.releaseDate)) {
+            return false;
+        }
+        return true;
+    }
 
     public Long getId() {
         return id;
@@ -70,7 +107,5 @@ public class MovieDTO {
     public void setAvailable(boolean available) {
         this.available = available;
     }
-    
-    
-    
+
 }
