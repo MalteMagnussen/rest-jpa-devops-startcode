@@ -35,7 +35,7 @@ public class MovieResourceTest {
     @BeforeAll
     public static void setUpClass() {
         //First Drop and Rebuild the test database 
-        emf = EMF_Creator.getEMF(EMF_Creator.Strategy.DROP_AND_CREATE);
+        emf = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.TEST,EMF_Creator.Strategy.DROP_AND_CREATE);
 
         //Set System property so the project executed by the Grizly-server wil use this same database
         System.setProperty("IS_TEST", PROPS.get("connection"));

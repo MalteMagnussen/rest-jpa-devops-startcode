@@ -7,8 +7,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import utils.EMF_Creator.DbSelector;
 import utils.EMF_Creator.Strategy;
 
@@ -18,6 +20,7 @@ public class MovieFacadeTest {
     
     private static EntityManagerFactory emf;
     private static MovieFacade facade;
+    private static Movie terminator = new Movie("Terminator", Date.valueOf("1984-2-15"), 8, false, 100000);
     
     public MovieFacadeTest() {
     }
@@ -48,7 +51,7 @@ public class MovieFacadeTest {
             em.getTransaction().begin();
 //            em.createNamedQuery("RenameMe.deleteAllRows").executeUpdate();
             // em.createQuery("DELETE from RenameMe").executeUpdate();
-            em.persist(new Movie("Terminator", Date.valueOf("1984-2-15"), 8, false, 100000));
+            em.persist(terminator);
             
             em.getTransaction().commit();
         } finally {
@@ -61,6 +64,14 @@ public class MovieFacadeTest {
 //        Remove any data after each test was run
     }
     
-    
+    @Test
+    public void testGetTicketSales() {
+        //Arrange
+        Long expResult = terminator.getTicketsSold();
+        //Act
+        Long result = facade.getTicketSales(1);
+        //Assert
+        assertEquals(expResult,result);
+    }
     
 }

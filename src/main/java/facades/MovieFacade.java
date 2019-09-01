@@ -1,8 +1,8 @@
 package facades;
 
+import entities.Movie;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import entityUtils.EMF_Creator;
 
 /**
  *
@@ -42,7 +42,8 @@ public class MovieFacade {
      */
     public Long getTicketSales(int id) {
         EntityManager em = getEntityManager();
-        return new Long(em.createNamedQuery("Movie.getTicketSales").setParameter("id", id).getFirstResult());
+        Movie movie = (Movie) em.createNamedQuery("Movie.getById").setParameter("id", id).getSingleResult();
+        return movie.getTicketsSold();
     }
     
     
