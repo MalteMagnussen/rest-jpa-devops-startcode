@@ -80,7 +80,7 @@ public class MovieFacade {
     public MovieDTO getMovieDTOById(int id) {
         EntityManager em = getEntityManager();
         try {
-            Movie movie = em.find(Movie.class, id);
+            Movie movie = em.find(Movie.class, new Long(id));
             return new MovieDTO(movie);
         } finally {
             em.close();

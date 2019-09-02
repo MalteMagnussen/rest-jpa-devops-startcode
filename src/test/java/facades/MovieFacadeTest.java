@@ -86,8 +86,7 @@ public class MovieFacadeTest {
         MovieDTO expResult = new MovieDTO(terminator);
         // Act
         int id = 1;
-        MovieDTO result;
-        result = facade.getMovieDTOById(id);
+        MovieDTO result = facade.getMovieDTOById(id);
         // Assert
         assertEquals(expResult, result);
     }
