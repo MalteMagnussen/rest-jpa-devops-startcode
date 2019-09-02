@@ -25,6 +25,7 @@ public class MovieFacadeTest {
     private static EntityManagerFactory emf;
     private static MovieFacade facade;
     private static Movie terminator;
+    private static List<Movie> movies = new ArrayList<>();
 
     public MovieFacadeTest() {
     }
@@ -34,6 +35,7 @@ public class MovieFacadeTest {
         emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST, Strategy.DROP_AND_CREATE);
         facade = MovieFacade.getMovieFacade(emf);
         terminator = new Movie("Terminator", Date.valueOf("1984-2-15"), 8, false, 100000);
+        movies.add(terminator);
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -82,13 +84,33 @@ public class MovieFacadeTest {
 
     @org.junit.jupiter.api.Test
     public void testGetMovieDTO() {
-        // Arrange 
+        //Arrange 
         MovieDTO expResult = new MovieDTO(terminator);
-        // Act
-        int id = 1;
+        //Act
+        Long id = 1l;
         MovieDTO result = facade.getMovieDTOById(id);
-        // Assert
+        //Assert
         assertEquals(expResult, result);
     }
-//Movie terminator2 = new Movie("Terminator 2: Judgment Day", Date.valueOf("1991-11-08"), 9, false, 200000);
+    
+    @org.junit.jupiter.api.Test
+    public void testMakeMovie() {
+        //Arrange
+        Movie terminator2 = new Movie("Terminator 2: Judgment Day", Date.valueOf("1991-11-08"), 9, false, 200000);
+        //Act
+        Movie result = facade.makeMovie(terminator2);
+        //Assert
+        assertEquals(terminator2, result);
+        // Removing the user again so it doesn't mess up the other tests.
+        EntityManager em = emf.createEntityManager();
+        try {
+            em = emf.createEntityManager();
+            em.getTransaction().begin();
+            em.remove(em.find(Movie.class, new Long(movies.size() + 1)));
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+
 }

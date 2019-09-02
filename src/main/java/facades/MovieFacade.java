@@ -77,15 +77,30 @@ public class MovieFacade {
      * @param id of the Movie
      * @return MovieDTO
      */
-    public MovieDTO getMovieDTOById(int id) {
+    public MovieDTO getMovieDTOById(Long id) {
         EntityManager em = getEntityManager();
         try {
-            Movie movie = em.find(Movie.class, new Long(id));
+            Movie movie = em.find(Movie.class, id);
             return new MovieDTO(movie);
         } finally {
             em.close();
         }
 
+    }
+
+    public Movie makeMovie(Movie movie) {
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(movie);
+            em.getTransaction().commit();
+            return movie;
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return null;
     }
 
 }

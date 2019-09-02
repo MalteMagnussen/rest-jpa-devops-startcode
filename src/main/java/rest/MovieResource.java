@@ -28,7 +28,7 @@ public class MovieResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String getTicketSales(@PathParam("id") int id) {
-        return new Gson().toJson(FACADE.getTicketSales(id));
+        return GSON.toJson(FACADE.getTicketSales(id));
     }
 
     /**
@@ -39,7 +39,7 @@ public class MovieResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String getAllMovies() {
-        return new Gson().toJson(FACADE.getAllMoviesDTO());
+        return GSON.toJson(FACADE.getAllMoviesDTO());
     }
     
 }
