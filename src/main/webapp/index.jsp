@@ -49,13 +49,14 @@
                 <div class="form-group">
                     <label for="rating">Rating</label>
                     <input type="int" name="rating" class="form-control" id="rating" min="1" max="10">
+                    <small id="rating" class="form-text text-muted">int from 1 to 10.</small>
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="showing" name="showing" value="yes">
                     <label class="form-check-label" for="showing">Is movie still showing in theaters?</label>
                 </div>
                 <div class="form-group">
-                    <label for="ticketsSold">Tickets Sold</label>
+                    <label for="ticketsSold">How many tickets the movie has sold.</label>
                     <input type="Long" name="ticketsSold" class="form-control" id="ticketsSold">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
