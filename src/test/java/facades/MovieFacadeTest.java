@@ -29,18 +29,8 @@ public class MovieFacadeTest {
     public MovieFacadeTest() {
     }
 
-    @BeforeAll
+    @org.junit.jupiter.api.BeforeAll
     public static void setUpClass() {
-
-    }
-
-    @AfterAll
-    public static void tearDownClass() {
-
-    }
-
-    @BeforeEach
-    public void setUp() {
         emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST, Strategy.DROP_AND_CREATE);
         facade = MovieFacade.getMovieFacade(emf);
         terminator = new Movie("Terminator", Date.valueOf("1984-2-15"), 8, false, 100000);
@@ -54,12 +44,22 @@ public class MovieFacadeTest {
         }
     }
 
+    @AfterAll
+    public static void tearDownClass() {
+
+    }
+
+    @org.junit.jupiter.api.BeforeEach
+    public void setUp() {
+
+    }
+
     @AfterEach
     public void tearDown() {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetTicketSales() {
         //Arrange
         Long expResult = terminator.getTicketsSold();
@@ -69,7 +69,7 @@ public class MovieFacadeTest {
         assertEquals(expResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAllMovies() {
         //Arrange
         List<MovieDTO> expResult = new ArrayList<>();
@@ -80,7 +80,7 @@ public class MovieFacadeTest {
         assertEquals(expResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetMovieDTO() {
         // Arrange 
         MovieDTO expResult = new MovieDTO(terminator);
