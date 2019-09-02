@@ -13,9 +13,7 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Movie.findAll", query = "SELECT r FROM Movie r"),
-    @NamedQuery(name = "Movie.deleteAllRows", query = "DELETE from Movie"),
-    @NamedQuery(name = "Movie.getById", query = "SELECT r FROM Movie r WHERE r.id = :id"),
-    @NamedQuery(name = "Movie.getByName", query = "SELECT r FROM Movie r WHERE r.name = :name")
+    @NamedQuery(name = "Movie.deleteAllRows", query = "DELETE from Movie")
 })
 public class Movie implements Serializable {
 

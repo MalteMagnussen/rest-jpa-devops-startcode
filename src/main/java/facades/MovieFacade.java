@@ -38,28 +38,54 @@ public class MovieFacade {
     }
 
     /**
-     * Get Ticket Sales for a Movie by ID. 
-     * To be used internally only. 
+     * Get Ticket Sales for a Movie by ID. To be used internally only.
+     *
      * @param id of the Movie.
-     * @return Number of Ticket sales as a Long. 
+     * @return Number of Ticket sales as a Long.
      */
     public Long getTicketSales(int id) {
         EntityManager em = getEntityManager();
-        Movie movie = (Movie) em.createNamedQuery("Movie.getById").setParameter("id", id).getSingleResult();
-        return movie.getTicketsSold();
+        try {
+            return (Long) em.createQuery("SELECT r.ticketsSold FROM Movie r WHERE r.id = :id").setParameter("id", id).getSingleResult();
+        } finally {
+            em.close();
+        }
     }
 
-    public List<MovieDTO> getAllMovies() {
+    /**
+     * Get all Movies in DTO format.
+     *
+     * @return
+     */
+    public List<MovieDTO> getAllMoviesDTO() {
         EntityManager em = getEntityManager();
-        List<Movie> movies = new ArrayList<>();
-        movies = em.createNamedQuery("Movie.findAll").getResultList();
-        List<MovieDTO> result = new ArrayList<>();
-        for (Movie movie: movies) {
-            result.add(new MovieDTO(movie));
+        try {
+            List<Movie> movies = em.createNamedQuery("Movie.findAll").getResultList();
+            List<MovieDTO> result = new ArrayList<>();
+            movies.forEach((movie) -> {
+                result.add(new MovieDTO(movie));
+            });
+            return result;
+        } finally {
+            em.close();
         }
-        return result;
     }
-    
-    
+
+    /**
+     * Get MovieDTO by ID.
+     *
+     * @param id of the Movie
+     * @return MovieDTO
+     */
+    public MovieDTO getMovieDTOById(int id) {
+        EntityManager em = getEntityManager();
+        try {
+            Movie movie = em.find(Movie.class, id);
+            return new MovieDTO(movie);
+        } finally {
+            em.close();
+        }
+
+    }
 
 }

@@ -15,6 +15,9 @@ import java.util.Objects;
  */
 public class MovieDTO {
 
+    public MovieDTO() {
+    }
+
     // FIELDS
     private Long id; // ID of the movie. 
     private String name; // Name of the movie.

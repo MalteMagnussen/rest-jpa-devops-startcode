@@ -11,7 +11,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-//Todo Remove or change relevant parts before ACTUAL use
 @Path("cinema")
 public class MovieResource {
 
@@ -32,11 +31,15 @@ public class MovieResource {
         return new Gson().toJson(FACADE.getTicketSales(id));
     }
 
+    /**
+     * Get all movies.
+     * @return 
+     */
     @Path("/all")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String getAllMovies() {
-        return new Gson().toJson(FACADE.getAllMovies());
+        return new Gson().toJson(FACADE.getAllMoviesDTO());
     }
     
 }
