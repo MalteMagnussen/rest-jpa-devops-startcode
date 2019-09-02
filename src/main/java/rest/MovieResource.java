@@ -32,7 +32,7 @@ public class MovieResource {
     }
 
     /**
-     * Get all movies.
+     * Get all movies as DTO.
      * @return 
      */
     @Path("/all")
@@ -41,5 +41,16 @@ public class MovieResource {
     public String getAllMovies() {
         return GSON.toJson(FACADE.getAllMoviesDTO());
     }
-    
+  
+    /**
+     * Get single movie as DTO
+     * @param id
+     * @return 
+     */
+    @Path("/movie/{id}")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getMovieDTOById(@PathParam("id") int id) {
+        return GSON.toJson(FACADE.getMovieDTOById(new Long(id)));
+    }
 }
