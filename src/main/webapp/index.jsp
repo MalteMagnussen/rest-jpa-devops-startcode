@@ -78,6 +78,10 @@
                 <p>OUTPUT: ${output}</p>
             </c:if>
         </div>
+        <div class="container">
+            GitHub at: https://github.com/MalteMagnussen/rest-jpa-devops-startcode
+        </div>
+        
         <!-- JQUERY JS -->
         <script src="https://code.jquery.com/jquery-3.4.0.min.js" crossorigin="anonymous"></script>
         <!-- BOOTSTRAP JS -->
