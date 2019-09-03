@@ -31,7 +31,6 @@ public class MovieDTO {
         this.releaseDate = movie.getReleaseDate();
         this.viewerRating = movie.getRating();
         this.available = movie.isShowing();
-
     }
 
     @Override

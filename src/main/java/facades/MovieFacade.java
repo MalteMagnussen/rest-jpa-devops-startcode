@@ -103,4 +103,38 @@ public class MovieFacade {
         return null;
     }
 
+    /**
+     * Get number of movies in the database.
+     *
+     * @return
+     */
+    public Long getMovieCount() {
+        EntityManager em = getEntityManager();
+        try {
+            Long result = (long) em.createNamedQuery("Movie.count").getSingleResult();
+            return result;
+        } finally {
+            em.close();
+        }
+    }
+
+    /**
+     * Returns MovieDTO by name.
+     *
+     * @param name
+     * @return
+     * @throws java.lang.Exception
+     */
+    public MovieDTO getMovieDTOByName(String name) throws Exception {
+        EntityManager em = getEntityManager();
+        try {
+            return em.createQuery("SELECT new dto.MovieDTO(m) FROM Movie m WHERE m.name = :name", MovieDTO.class).setParameter("name", name).getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("No customer found by that name");
+        } finally {
+            em.close();
+        }
+    }
+
 }

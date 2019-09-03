@@ -30,20 +30,9 @@ public class MovieFacadeTest {
     public MovieFacadeTest() {
     }
 
-    @org.junit.jupiter.api.BeforeAll
+    @BeforeAll
     public static void setUpClass() {
         emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST, Strategy.DROP_AND_CREATE);
-        facade = MovieFacade.getMovieFacade(emf);
-        terminator = new Movie("Terminator", Date.valueOf("1984-2-15"), 8, false, 100000);
-        movies.add(terminator);
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            em.persist(terminator);
-            em.getTransaction().commit();
-        } finally {
-            em.close();
-        }
     }
 
     @AfterAll
@@ -51,14 +40,45 @@ public class MovieFacadeTest {
 
     }
 
-    @org.junit.jupiter.api.BeforeEach
+    @BeforeEach
     public void setUp() {
-
+        facade = MovieFacade.getMovieFacade(emf);
+        terminator = new Movie("Terminator", Date.valueOf("1984-2-15"), 8, false, 100000);
+        movies.add(terminator);
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.createNativeQuery("DELETE FROM MOVIE").executeUpdate();
+            em.persist(terminator);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
     }
 
     @AfterEach
     public void tearDown() {
 
+    }
+    
+    @Test
+    public void testGetMovieByName() throws Exception {
+        //Arrange 
+        MovieDTO expResult = new MovieDTO(terminator);
+        //Act
+        MovieDTO result = facade.getMovieDTOByName("Terminator");
+        //Assert
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testGetMovieCount() {
+        // Arrange
+        Long expResult = 1l;
+        // Act
+        Long result = facade.getMovieCount();
+        // Assert
+        assertEquals(expResult, result);
     }
 
     @org.junit.jupiter.api.Test
@@ -92,7 +112,7 @@ public class MovieFacadeTest {
         //Assert
         assertEquals(expResult, result);
     }
-    
+
     @org.junit.jupiter.api.Test
     public void testMakeMovie() {
         //Arrange

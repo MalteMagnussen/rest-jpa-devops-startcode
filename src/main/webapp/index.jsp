@@ -35,7 +35,7 @@
         <div class="container">
 
             <h1> Make a Movie </h1>
-            <h4> REST API ENDPOINT at /api/cinema/all and /api/cinema/tickets/{id} </h4>
+
             <form method="POST" action="FrontController">
                 <input type="hidden" name="command" value="makeMovie">
                 <div class="form-group">
@@ -61,6 +61,16 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+        </div>
+        <div class="container">
+            <h4> REST API ENDPOINTS: <br>
+                /api/cinema/all <br>
+                /api/cinema/tickets/{id} <br>
+                /api/cinema/test <br>
+                /api/cinema/{id} <br>
+                /api/cinema/name/{name} <br>
+                /api/cinema/count <br>
+            </h4>
         </div>
         <div class="container">
             <h1> OUTPUT </h1>
