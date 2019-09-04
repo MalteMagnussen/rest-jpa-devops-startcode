@@ -40,15 +40,15 @@
                 <input type="hidden" name="command" value="makeMovie">
                 <div class="form-group">
                     <label for="inputName">Name of the movie</label>
-                    <input type="text" name="name" class="form-control" id="inputName" placeholder="Enter movie name">
+                    <input type="text" name="name" class="form-control" id="inputName" placeholder="Enter movie name" required>
                 </div>
                 <div class="form-group">
                     <label for="releaseDate">Release Date</label>
-                    <input type="date" name="date" class="form-control" id="releaseDate">
+                    <input type="date" name="date" class="form-control" id="releaseDate" required>
                 </div>
                 <div class="form-group">
                     <label for="rating">Rating</label>
-                    <input type="int" name="rating" class="form-control" id="rating" min="1" max="10">
+                    <input type="int" name="rating" class="form-control" id="rating" min="1" max="10" required>
                     <small id="rating" class="form-text text-muted">int from 1 to 10.</small>
                 </div>
                 <div class="form-group form-check">
@@ -57,7 +57,7 @@
                 </div>
                 <div class="form-group">
                     <label for="ticketsSold">How many tickets the movie has sold.</label>
-                    <input type="Long" name="ticketsSold" class="form-control" id="ticketsSold">
+                    <input type="Long" name="ticketsSold" class="form-control" id="ticketsSold" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
