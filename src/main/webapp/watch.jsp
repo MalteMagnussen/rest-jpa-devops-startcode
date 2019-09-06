@@ -52,17 +52,17 @@
                     <!-- TODO 
                     
                     Get all movies - Done
-                    Get Movie by ID
-                    Get Movie by Name
-                    Get Number of Movies
+                    Get Movie by ID - Done
+                    Get Movie by Name - Done
                     
                     -->
 
                     <!-- Button and Input field Container -->
                     <div class="container">
                         <label for="idOfMovie">Input ID of Movie you wish to find.</label>
-                        <input type="number" id="idOfMovie">
+                        <input type="text" id="idOfMovie">
                         <button id="getIdOfMovieButton" class="btn btn-primary">Get Movie By ID</button>
+                        <button id="getNameOfMovieButton" class="btn btn-primary">Get Movie By Name</button>
                         <button id="getAllMoviesButton" class="btn btn-primary">Get All Movies</button>
 
                     </div>
@@ -77,6 +77,8 @@
                         </per>
 
                     </div>
+                    
+                    <a href="/devops"> Back to Make Movie </a>
 
 
                     <div style="height: 700px"></div>
@@ -95,6 +97,8 @@
         <script src="JavaScript/getAllMovies.js"></script>
         <!-- Get Movie By ID JavaScript -->
         <script src="JavaScript/getMovieById.js"></script>
+        <!-- Get Movies By Name JavaScript -->
+        <script src="JavaScript/getMovieByName.js"></script>
         <!-- Table Helper JavaScript -->
         <script src="JavaScript/tableHelper.js"></script>
     </body>

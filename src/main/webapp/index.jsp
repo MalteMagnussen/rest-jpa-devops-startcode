@@ -68,14 +68,9 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
+                    <br>
                     <div class="container">
-                        <h4> REST API ENDPOINTS: <br>
-                            /api/cinema/all <br>
-                            /api/cinema/tickets/{id} <br>
-                            /api/cinema/test <br>
-                            /api/cinema/{id} <br>
-                            /api/cinema/name/{name} <br>
-                            /api/cinema/count <br>
+                        <h4> <a href="/devops/watch.jsp"> Find the movies </a>
                         </h4>
                     </div>
                     <div class="container">
