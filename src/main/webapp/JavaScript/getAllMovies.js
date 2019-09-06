@@ -33,21 +33,15 @@
  ]
  */
 
-// URL OF GET ALL REST ENDPOINT
-let URL = "/devops/api/cinema/all";
-
 // Get getAllMoviesButton
 let getAllMoviesButton = document.getElementById("getAllMoviesButton");
-
-// Get OutPutReceiver
-let OutPutReceiver = document.getElementById("OutPutReceiver");
 
 /**
  * Get Table of data.
  * @param {type} data
  * @returns HTML String that makes a table of the given data. 
  */
-function getTable(data) {
+function getAllTable(data) {
     // Take objects out of array. 
     let arrayOfObj = Object.values(data);
     // Make Table Header
@@ -66,13 +60,19 @@ function getTable(data) {
 
 // Listener for click. If clicked, populate OutPutReceiver with Data. 
 getAllMoviesButton.addEventListener("click", function () {
+    // URL OF GET ALL REST ENDPOINT
+    let URL = "/devops/api/cinema/all";
+
     // DATA OF GET ALL REST ENDPOINT
     fetch(URL)
             .then(res => res.json()) //in flow1, just do it
             .then(data => {
+
+                // Get OutPutReceiver
+                let OutPutReceiver = document.getElementById("OutPutReceiver");
+
                 // Inside this callback, and only here, the response data is available
-                OutPutReceiver.innerHTML = getTable(data);
+                OutPutReceiver.innerHTML = getAllTable(data);
             });
-    
 });
 
