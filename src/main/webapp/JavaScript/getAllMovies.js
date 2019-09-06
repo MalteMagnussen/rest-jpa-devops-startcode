@@ -34,7 +34,7 @@
  */
 
 // URL OF GET ALL REST ENDPOINT
-let URL = "http://localhost/api/cinema/all";
+let URL = "/api/cinema/all";
 
 // Get getAllMoviesButton
 let getAllMoviesButton = document.getElementById("getAllMoviesButton");
