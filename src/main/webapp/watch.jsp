@@ -59,7 +59,7 @@
 
                     <!-- Button and Input field Container -->
                     <div class="container">
-                        <label for="idOfMovie">Input ID of Movie you wish to find.</label>
+                        <label for="idOfMovie">Input ID or Name of the Movie you wish to find.</label>
                         <input type="text" id="idOfMovie">
                         <button id="getIdOfMovieButton" class="btn btn-primary">Get Movie By ID</button>
                         <button id="getNameOfMovieButton" class="btn btn-primary">Get Movie By Name</button>
