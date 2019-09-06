@@ -25,63 +25,74 @@
 
     </head>
     <body>
-        <!-- 
-        private String name; // Name of the movie.
-        private Date releaseDate; // Date the movie was released. 
-        private int rating; // Rating of the movie. 1-10.
-        private boolean showing; // Is the movie currently showing in cinemas. 
-        private long ticketsSold; // INTERNAL INFO - How many tickets sold to this movie. 
-        -->
-        <div class="container">
 
-            <h1> Make a Movie </h1>
+        <!-- Page Content -->
+        <div class="container">
+            <div class="card border-0 shadow my-5">
+                <div class="card-body p-5">
 
-            <form method="POST" action="FrontController">
-                <input type="hidden" name="command" value="makeMovie">
-                <div class="form-group">
-                    <label for="inputName">Name of the movie</label>
-                    <input type="text" name="name" class="form-control" id="inputName" placeholder="Enter movie name" required>
+                    <!-- 
+                    private String name; // Name of the movie.
+                    private Date releaseDate; // Date the movie was released. 
+                    private int rating; // Rating of the movie. 1-10.
+                    private boolean showing; // Is the movie currently showing in cinemas. 
+                    private long ticketsSold; // INTERNAL INFO - How many tickets sold to this movie. 
+                    -->
+                    <div class="container">
+
+                        <h1> Make a Movie </h1>
+
+                        <form method="POST" action="FrontController">
+                            <input type="hidden" name="command" value="makeMovie">
+                            <div class="form-group">
+                                <label for="inputName">Name of the movie</label>
+                                <input type="text" name="name" class="form-control" id="inputName" placeholder="Enter movie name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="releaseDate">Release Date</label>
+                                <input type="date" name="date" class="form-control" id="releaseDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="rating">Rating</label>
+                                <input type="int" name="rating" class="form-control" id="rating" min="1" max="10" required>
+                                <small id="rating" class="form-text text-muted">int from 1 to 10.</small>
+                            </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="showing" name="showing" value="yes">
+                                <label class="form-check-label" for="showing">Is movie still showing in theaters?</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="ticketsSold">How many tickets the movie has sold.</label>
+                                <input type="Long" name="ticketsSold" class="form-control" id="ticketsSold" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                    <div class="container">
+                        <h4> REST API ENDPOINTS: <br>
+                            /api/cinema/all <br>
+                            /api/cinema/tickets/{id} <br>
+                            /api/cinema/test <br>
+                            /api/cinema/{id} <br>
+                            /api/cinema/name/{name} <br>
+                            /api/cinema/count <br>
+                        </h4>
+                    </div>
+                    <div class="container">
+                        <c:if test="${not empty output}">
+                            <h1> OUTPUT </h1>
+                            <p>${output}</p>
+                        </c:if>
+                    </div>
+                    <div class="container">
+                        GitHub at: https://github.com/MalteMagnussen/rest-jpa-devops-startcode
+                    </div>
+
+                    <div style="height: 700px"></div>
                 </div>
-                <div class="form-group">
-                    <label for="releaseDate">Release Date</label>
-                    <input type="date" name="date" class="form-control" id="releaseDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="rating">Rating</label>
-                    <input type="int" name="rating" class="form-control" id="rating" min="1" max="10" required>
-                    <small id="rating" class="form-text text-muted">int from 1 to 10.</small>
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="showing" name="showing" value="yes">
-                    <label class="form-check-label" for="showing">Is movie still showing in theaters?</label>
-                </div>
-                <div class="form-group">
-                    <label for="ticketsSold">How many tickets the movie has sold.</label>
-                    <input type="Long" name="ticketsSold" class="form-control" id="ticketsSold" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            </div>
         </div>
-        <div class="container">
-            <h4> REST API ENDPOINTS: <br>
-                /api/cinema/all <br>
-                /api/cinema/tickets/{id} <br>
-                /api/cinema/test <br>
-                /api/cinema/{id} <br>
-                /api/cinema/name/{name} <br>
-                /api/cinema/count <br>
-            </h4>
-        </div>
-        <div class="container">
-            <h1> OUTPUT </h1>
-            <c:if test="${not empty output}">
-                <p>OUTPUT: ${output}</p>
-            </c:if>
-        </div>
-        <div class="container">
-            GitHub at: https://github.com/MalteMagnussen/rest-jpa-devops-startcode
-        </div>
-        
+
         <!-- JQUERY JS -->
         <script src="https://code.jquery.com/jquery-3.4.0.min.js" crossorigin="anonymous"></script>
         <!-- BOOTSTRAP JS -->
